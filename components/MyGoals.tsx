@@ -205,7 +205,7 @@ export default function MyGoals() {
                           )}
                           {goal.status === 'approved' && (
                             <a href={`/employee/checkin?goalId=${goal.id}`} className="inline-flex items-center gap-1 text-xs text-brand-primary hover:text-brand-primaryHover mt-2 font-medium bg-indigo-50 px-2 py-1 rounded">
-                              <span className="material-symbols-outlined text-[14px]">edit_
+                              <span className="material-symbols-outlined text-[14px]">edit_note</span>
                               Check In
                             </a>
                           )}

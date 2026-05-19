@@ -115,7 +115,7 @@ export default function AdminPushGoal() {
 <div className="space-y-3">
 <label className="text-label-caps font-label-caps text-text-secondary block">TARGET DEPARTMENTS</label>
 <div className="relative">
-<select className="w-full bg-[#0E1015] border border-border text-text-primary px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container/50 transition-all text-body-md appearance-none custom-scrollbar" multiple="" size="5">
+<select className="w-full bg-[#0E1015] border border-border text-text-primary px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-container/50 transition-all text-body-md appearance-none custom-scrollbar" multiple size={5}>
 <option className="py-2 px-2 hover:bg-primary-container/20 rounded" value="engineering">Engineering</option>
 <option className="py-2 px-2 hover:bg-primary-container/20 rounded" value="sales">Sales</option>
 <option className="py-2 px-2 hover:bg-primary-container/20 rounded" value="marketing">Marketing</option>
@@ -144,7 +144,7 @@ export default function AdminPushGoal() {
 <p className="text-body-sm text-text-secondary">Force-assign to all employees in department.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer">
-<input checked="" className="sr-only peer" type="checkbox" value=""/>
+<input defaultChecked className="sr-only peer" type="checkbox" value=""/>
 <div className="w-11 h-6 bg-[#0E1015] border border-border peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-text-secondary after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container peer-checked:after:bg-white"></div>
 </label>
 </div>

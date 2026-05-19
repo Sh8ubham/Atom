@@ -174,7 +174,7 @@ export default function CheckIn() {
               </div>
 
               <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-slate-900 uppercase tracking-wider" htmlFor="comments">UPDATE 
+                <label className="text-xs font-bold text-slate-900 uppercase tracking-wider" htmlFor="comments">UPDATE NOTE (Optional)</label>
                 <textarea 
                   id="comments" 
                   className="w-full bg-slate-50 border border-slate-200 rounded-lg p-4 text-slate-900 resize-none focus:outline-none focus:ring-2 focus:ring-brand-primary focus:bg-white transition-all" 
