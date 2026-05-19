@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtomQuest - Create New Goal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-dim": "#111318",
+                      "on-surface": "#e2e2e9",
+                      "outline": "#908f9e",
+                      "tertiary": "#ffb867",
+                      "surface-container-high": "#282a2f",
+                      "surface": "#17191F",
+                      "error": "#ffb4ab",
+                      "surface-bright": "#37393f",
+                      "on-secondary-container": "#a7afff",
+                      "on-primary": "#121f8b",
+                      "on-tertiary-container": "#fffaf8",
+                      "danger": "#D14343",
+                      "on-secondary-fixed": "#000964",
+                      "text-primary": "#F1F2F4",
+                      "inverse-primary": "#4854bb",
+                      "primary-fixed": "#dfe0ff",
+                      "on-primary-fixed": "#000965",
+                      "surface-container-lowest": "#0c0e13",
+                      "error-container": "#93000a",
+                      "on-secondary-fixed-variant": "#2c39a7",
+                      "inverse-on-surface": "#2e3036",
+                      "warning": "#E5A832",
+                      "on-secondary": "#0d1d91",
+                      "surface-container-highest": "#33353a",
+                      "surface-container-low": "#1a1b21",
+                      "tertiary-fixed": "#ffddbb",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "secondary-fixed": "#dfe0ff",
+                      "primary-fixed-dim": "#bdc2ff",
+                      "on-error-container": "#ffdad6",
+                      "background": "#111318",
+                      "on-tertiary": "#482900",
+                      "on-surface-variant": "#c6c5d5",
+                      "on-error": "#690005",
+                      "border": "#272A30",
+                      "primary": "#bdc2ff",
+                      "success": "#3E8E41",
+                      "surface-container": "#1e1f25",
+                      "primary-container": "#5e6ad2",
+                      "tertiary-fixed-dim": "#ffb867",
+                      "text-secondary": "#8A8F98",
+                      "surface-variant": "#33353a",
+                      "outline-variant": "#454652",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "on-primary-fixed-variant": "#2e3aa2",
+                      "surface-tint": "#bdc2ff",
+                      "secondary": "#bdc2ff",
+                      "on-primary-container": "#fdfaff",
+                      "on-tertiary-fixed": "#2b1700",
+                      "tertiary-container": "#a56500",
+                      "secondary-container": "#2c39a7",
+                      "on-background": "#e2e2e9",
+                      "inverse-surface": "#e2e2e9"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "margin": "32px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "label-caps": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-md": ["Inter"]
+              },
+              "fontSize": {
+                      "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0E1015;
+            color: #F1F2F4;
+            font-family: 'Inter', sans-serif;
+        }
+        .glass-card {
+            background: rgba(23, 25, 31, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #272A30;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface-container-lowest min-h-screen flex overflow-hidden">
+<!-- SideNavBar (Execution from JSON) -->
+<aside class="fixed left-0 top-0 h-full flex flex-col justify-between py-margin border-r border-border bg-surface-dim w-64 z-50">
+<div class="flex flex-col gap-8">
+<!-- Brand Logo -->
+<div class="px-6 flex items-center gap-3">
+<div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-body-lg">rocket_launch</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md text-primary leading-tight">AtomQuest</span>
+<span class="text-label-caps font-label-caps text-text-secondary">Corporate Portal</span>
+</div>
+</div>
+<!-- Navigation Links -->
+<nav class="flex flex-col gap-1">
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<a class="bg-secondary-container/20 text-primary border-r-2 border-primary flex items-center gap-3 px-4 py-3 mx-2 rounded-l-lg" href="#">
+<span class="material-symbols-outlined">target</span>
+<span class="font-label-caps text-label-caps">Active Goals</span>
+</a>
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label-caps text-label-caps">Team Progress</span>
+</a>
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">flag</span>
+<span class="font-label-caps text-label-caps">Milestones</span>
+</a>
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">insights</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+</nav>
+</div>
+<div class="flex flex-col gap-1">
+<button class="mx-4 mb-6 py-2 px-4 bg-primary-container text-on-primary-container rounded-lg font-label-caps text-label-caps flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">add</span>
+                New Goal
+            </button>
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+<a class="text-text-secondary flex items-center gap-3 px-4 py-3 mx-2 rounded-lg hover:bg-surface-container-high hover:text-on-surface transition-colors duration-150" href="#">
+<span class="material-symbols-outlined text-danger">logout</span>
+<span class="font-label-caps text-label-caps text-danger">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="flex-1 ml-64 flex flex-col h-screen overflow-y-auto">
+<!-- TopAppBar (Execution from JSON) -->
+<header class="flex justify-between items-center w-full px-gutter h-16 sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border">
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<span class="text-headline-md font-headline-md font-bold text-on-surface tracking-tight">AtomQuest</span>
+</div>
+<div class="h-4 w-px bg-border"></div>
+<div class="flex items-center gap-4">
+<span class="text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md">Create New Goal</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-text-secondary hover:text-on-surface transition-all duration-150">notifications</button>
+<button class="material-symbols-outlined text-text-secondary hover:text-on-surface transition-all duration-150">settings</button>
+<button class="material-symbols-outlined text-text-secondary hover:text-on-surface transition-all duration-150">help</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional portrait of a senior executive in a modern tech environment, featuring soft, cinematic lighting and a neutral background that reflects a high-end corporate SaaS aesthetic. The individual has a focused yet approachable expression, symbolizing leadership and precision within a high-performance digital workspace. The overall color palette is muted and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdb2xoHVSzOZFKnwrUOzC08selWO79WY1cHMnI8JfOWgrLwBJ82s8zkYKDa39qOvUGFrDoJ78FzjSvtylI0MMSXXAdur45hfhvqJKXzHepubbqRhjnOu7XU_MEAZznkKVc1TgSj7sOY3lHFowksvY2xgWuxy4eM6BAZLq0_V-GEKLWrH7PHAu8i9N8S0h1wHV6td1ezB_hLUbaromEObqYxV4YkXi1vdPIsJ87kjXWytpbvDGDRgizDBhyJJ29NB20QLJxzSIqh042"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="flex-1 flex flex-col items-center justify-center p-margin relative">
+<!-- Background Decorative Element -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Goal Creation Card -->
+<div class="glass-card w-full max-w-2xl rounded-lg shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
+<!-- Card Header -->
+<div class="p-8 border-b border-border">
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Create New Goal</h1>
+<p class="font-body-md text-body-md text-text-secondary">Define objectives and metrics for this quarter.</p>
+</div>
+<!-- Form Content -->
+<div class="p-8 space-y-6">
+<div class="grid grid-cols-2 gap-6">
+<!-- Thrust Area -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary uppercase">Thrust Area</label>
+<select class="w-full bg-[#0E1015] border border-border rounded-lg px-4 py-3 text-text-primary font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all appearance-none cursor-pointer">
+<option>Growth</option>
+<option>Product</option>
+<option>Ops</option>
+<option>Team</option>
+</select>
+</div>
+<!-- UoM Type -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary uppercase">UoM Type</label>
+<select class="w-full bg-[#0E1015] border border-border rounded-lg px-4 py-3 text-text-primary font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all appearance-none cursor-pointer">
+<option>Maximize</option>
+<option>Minimize</option>
+<option>Timeline</option>
+<option>Zero Incident</option>
+</select>
+</div>
+</div>
+<!-- Goal Title -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary uppercase">Goal Title</label>
+<input class="w-full bg-[#0E1015] border border-border rounded-lg px-4 py-3 text-text-primary font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all placeholder:text-text-secondary/50" placeholder="Enter objective title..." type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<!-- Target -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary uppercase">Target</label>
+<input class="w-full bg-[#0E1015] border border-border rounded-lg px-4 py-3 text-text-primary font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all placeholder:text-text-secondary/50" placeholder="e.g., $1.2M" type="text"/>
+</div>
+<!-- Weightage -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary uppercase">Weightage %</label>
+<div class="relative">
+<input class="w-full bg-[#0E1015] border border-border rounded-lg px-4 py-3 text-text-primary font-body-md focus:ring-2 focus:ring-primary-container outline-none transition-all placeholder:text-text-secondary/50" placeholder="e.g., 25" type="number"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary font-body-md">%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Area -->
+<div class="px-8 py-6 bg-surface-container-high/30 border-t border-border flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-text-secondary">Running Weightage Total: </span>
+<span class="font-body-sm text-body-sm font-bold text-success">65% / 100%</span>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-6 py-2.5 rounded-lg border border-border text-text-primary font-label-caps text-label-caps hover:bg-surface-bright active:scale-95 transition-all">
+                            Cancel
+                        </button>
+<button class="px-6 py-2.5 rounded-lg bg-primary-container text-white font-label-caps text-label-caps hover:brightness-110 active:scale-95 transition-all shadow-lg shadow-primary-container/20">
+                            Save Goal
+                        </button>
+</div>
+</div>
+</div>
+<!-- Bottom Context Hint -->
+<div class="mt-8 flex items-center gap-4 text-text-secondary/60">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">info</span>
+<span class="font-body-sm text-body-sm">Goals are tracked per fiscal quarter.</span>
+</div>
+<div class="w-1 h-1 rounded-full bg-border"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px]">visibility</span>
+<span class="font-body-sm text-body-sm">Visible to Team Leadership</span>
+</div>
+</div>
+</div>
+</main>
+</body></html>

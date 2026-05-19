@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Company Completion Analytics | AtomQuest</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#2b1700",
+                        "on-tertiary": "#482900",
+                        "surface-tint": "#bdc2ff",
+                        "background": "#111318",
+                        "tertiary-container": "#a56500",
+                        "error": "#ffb4ab",
+                        "on-secondary": "#0d1d91",
+                        "on-secondary-container": "#a7afff",
+                        "text-secondary": "#8A8F98",
+                        "border": "#272A30",
+                        "surface-container-highest": "#33353a",
+                        "inverse-surface": "#e2e2e9",
+                        "on-secondary-fixed-variant": "#2c39a7",
+                        "primary-fixed-dim": "#bdc2ff",
+                        "on-primary-fixed-variant": "#2e3aa2",
+                        "tertiary": "#ffb867",
+                        "text-primary": "#F1F2F4",
+                        "surface-container-lowest": "#0c0e13",
+                        "outline-variant": "#454652",
+                        "on-tertiary-container": "#fffaf8",
+                        "surface": "#17191F",
+                        "secondary-fixed": "#dfe0ff",
+                        "surface-container": "#1e1f25",
+                        "on-tertiary-fixed-variant": "#673d00",
+                        "warning": "#E5A832",
+                        "on-primary-container": "#fdfaff",
+                        "inverse-primary": "#4854bb",
+                        "on-error-container": "#ffdad6",
+                        "on-error": "#690005",
+                        "on-primary": "#121f8b",
+                        "secondary-container": "#2c39a7",
+                        "on-surface-variant": "#c6c5d5",
+                        "on-surface": "#e2e2e9",
+                        "on-secondary-fixed": "#000964",
+                        "primary-container": "#5e6ad2",
+                        "surface-bright": "#37393f",
+                        "surface-dim": "#111318",
+                        "outline": "#908f9e",
+                        "danger": "#D14343",
+                        "inverse-on-surface": "#2e3036",
+                        "on-primary-fixed": "#000965",
+                        "surface-container-high": "#282a2f",
+                        "error-container": "#93000a",
+                        "secondary": "#bdc2ff",
+                        "surface-container-low": "#1a1b21",
+                        "success": "#3E8E41",
+                        "secondary-fixed-dim": "#bdc2ff",
+                        "on-background": "#e2e2e9",
+                        "surface-variant": "#33353a",
+                        "primary-fixed": "#dfe0ff",
+                        "tertiary-fixed-dim": "#ffb867",
+                        "primary": "#bdc2ff",
+                        "tertiary-fixed": "#ffddbb"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "margin": "32px",
+                        "gutter": "24px",
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                        "headline-xl": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                        "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                        "body-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #0E1015;
+            color: #F1F2F4;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 25, 31, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid #272A30;
+        }
+        .sidebar-active {
+            color: #bdc2ff;
+            background-color: rgba(94, 106, 210, 0.1);
+            border-right: 2px solid #bdc2ff;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen overflow-hidden">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen left-0 w-64 bg-surface/50 backdrop-blur-xl border-r border-border py-margin shrink-0">
+<div class="px-6 mb-10">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">AtomQuest</h1>
+<p class="font-label-caps text-label-caps text-text-secondary mt-1">Enterprise Portal</p>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<!-- Dashboard -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface-variant/50 hover:text-text-primary transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-caps text-label-caps">Dashboard</span>
+</a>
+<!-- Goals -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface-variant/50 hover:text-text-primary transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-label-caps text-label-caps">Goals</span>
+</a>
+<!-- Teams -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface-variant/50 hover:text-text-primary transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="font-label-caps text-label-caps">Teams</span>
+</a>
+<!-- Analytics (Active) -->
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg sidebar-active transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+</nav>
+<div class="px-4 mt-auto border-t border-border pt-6 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface-variant/50 hover:text-text-primary transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-text-secondary hover:bg-surface-variant/50 hover:text-text-primary transition-all duration-150 cursor-pointer active:scale-95" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col h-screen overflow-y-auto">
+<!-- TopNavBar -->
+<header class="sticky top-0 z-50 flex justify-between items-center w-full px-margin h-16 bg-background/80 backdrop-blur-md border-b border-border shrink-0">
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="absolute inset-y-0 left-3 flex items-center text-text-secondary">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</span>
+<input class="bg-surface-container-lowest border border-border rounded-lg pl-10 pr-4 py-1.5 font-body-sm text-body-sm w-64 focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none" placeholder="Search analytics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4 text-text-secondary">
+<span class="material-symbols-outlined cursor-pointer hover:text-text-primary transition-colors">notifications</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-text-primary transition-colors">settings</span>
+</div>
+<div class="w-8 h-8 rounded-full border border-border bg-surface-container-highest overflow-hidden cursor-pointer active:opacity-80">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A professional high-resolution headshot of a corporate executive for a profile avatar. The subject is a male with a clean-cut look, wearing a dark blazer over a crisp white shirt. The background is a soft-focus office environment with cool blue and grey tones. The lighting is flattering and professional, emphasizing a modern SaaS platform user interface aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzZapXMRTPPKL63LKZ7XkZfTpwNJai3r7q_wQ5fsVbeVUcF2g-kBu2rDg00sfK3j2czyIFKkgF4FYSPD_AiwidxdWNLl8Um2SLOBofJXEphgN3VdOPmCxDhsFSrXqW2612S6JdcjwUndgt2M4jpeb7qDNJ_lmotl67w5jdNLejEUPcV-OzAt3bhvLTQWsesxuUSYlAOqGVclV5Kx4ykclJ3taQE3w-OxGSiBMKagH3zr0irD7_FYIG1eyaegTQOV37yh40OVD603Dy"/>
+</div>
+</div>
+</header>
+<!-- Main Dashboard Canvas -->
+<main class="flex-1 p-margin space-y-gutter max-w-container-max mx-auto w-full">
+<!-- Page Header -->
+<header class="mb-10">
+<h2 class="font-headline-lg text-headline-lg text-text-primary">Company Completion Analytics</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-2">High-level overview of goal progress across all departments.</p>
+</header>
+<!-- Metrics Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Avg Score -->
+<div class="glass-panel rounded-xl p-6 flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-text-secondary uppercase">Company Avg Score</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+</div>
+<div class="mt-8 flex items-baseline gap-2">
+<span class="font-headline-xl text-headline-xl text-text-primary">82%</span>
+<span class="font-body-sm text-body-sm text-success flex items-center">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+                            +2.4%
+                        </span>
+</div>
+<div class="mt-4 w-full bg-surface-container rounded-full h-1.5 overflow-hidden">
+<div class="bg-primary-container h-full w-[82%]"></div>
+</div>
+</div>
+<!-- Total Goals -->
+<div class="glass-panel rounded-xl p-6 flex flex-col justify-between group hover:border-primary transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-text-secondary uppercase">Total Goals Tracked</span>
+<span class="material-symbols-outlined text-primary">track_changes</span>
+</div>
+<div class="mt-8">
+<span class="font-headline-xl text-headline-xl text-text-primary">450</span>
+</div>
+<div class="mt-4 flex items-center gap-2 text-text-secondary">
+<span class="font-body-sm text-body-sm">Active in 12 departments</span>
+</div>
+</div>
+<!-- At-Risk Goals -->
+<div class="glass-panel rounded-xl p-6 flex flex-col justify-between group hover:border-danger transition-colors duration-300">
+<div class="flex justify-between items-start">
+<span class="font-label-caps text-label-caps text-text-secondary uppercase text-danger">At-Risk Goals</span>
+<span class="material-symbols-outlined text-danger">warning</span>
+</div>
+<div class="mt-8">
+<span class="font-headline-xl text-headline-xl text-text-primary">12</span>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<span class="font-body-sm text-body-sm text-danger/80">Requires immediate review</span>
+</div>
+</div>
+</section>
+<!-- Chart Section -->
+<section class="glass-panel rounded-xl p-8">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Performance by Department</h3>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">Cross-department completion score comparison</p>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-border font-label-caps text-label-caps hover:bg-surface-variant transition-colors">Daily</button>
+<button class="px-4 py-1.5 rounded-lg border border-border bg-primary-container/20 text-primary font-label-caps text-label-caps">Weekly</button>
+</div>
+</div>
+<div class="h-64 flex items-end justify-between px-4 gap-4">
+<!-- Engineering -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[88%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-[70%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Eng</span>
+</div>
+<!-- Marketing -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[85%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-[65%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Mkt</span>
+</div>
+<!-- Design -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[78%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-[60%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Des</span>
+</div>
+<!-- Sales -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[72%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-tertiary-container h-[55%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Sal</span>
+</div>
+<!-- Ops -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[65%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-[45%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Ops</span>
+</div>
+<!-- Legal -->
+<div class="flex-1 flex flex-col items-center group cursor-pointer">
+<div class="w-full bg-primary-container/20 rounded-t-lg relative flex flex-col justify-end overflow-hidden transition-all duration-300 h-[92%] group-hover:bg-primary-container/30">
+<div class="absolute inset-x-0 bottom-0 bg-primary-container h-[80%]"></div>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary mt-4 group-hover:text-text-primary">Leg</span>
+</div>
+</div>
+</section>
+<!-- Table Section -->
+<section class="glass-panel rounded-xl overflow-hidden">
+<div class="p-6 border-b border-border">
+<h3 class="font-headline-md text-headline-md text-text-primary">Department Breakdown</h3>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="bg-surface-container-lowest border-b border-border">
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-secondary">Department</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-secondary">Employee Count</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-secondary">Avg Score</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-secondary">Status</th>
+<th class="px-6 py-4 font-label-caps text-label-caps text-text-secondary text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Engineering -->
+<tr class="hover:bg-surface-variant/30 transition-colors cursor-default">
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary font-medium">Engineering</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-secondary">45</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary">88%</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-success/10 text-success text-[11px] font-bold tracking-wider uppercase">
+                                        Excellent
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-text-secondary cursor-pointer hover:text-primary transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Sales -->
+<tr class="hover:bg-surface-variant/30 transition-colors cursor-default">
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary font-medium">Sales</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-secondary">30</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary">72%</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-warning/10 text-warning text-[11px] font-bold tracking-wider uppercase">
+                                        Needs Attention
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-text-secondary cursor-pointer hover:text-primary transition-colors">chevron_right</span>
+</td>
+</tr>
+<!-- Marketing -->
+<tr class="hover:bg-surface-variant/30 transition-colors cursor-default">
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary font-medium">Marketing</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-secondary">15</td>
+<td class="px-6 py-5 font-body-md text-body-md text-text-primary">85%</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-success/10 text-success text-[11px] font-bold tracking-wider uppercase">
+                                        On Track
+                                    </span>
+</td>
+<td class="px-6 py-5 text-right">
+<span class="material-symbols-outlined text-text-secondary cursor-pointer hover:text-primary transition-colors">chevron_right</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+<!-- Mobile Navigation Shell Placeholder -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 h-16 bg-surface/80 backdrop-blur-md flex items-center justify-around px-margin z-50 border-t border-border">
+<span class="material-symbols-outlined text-text-secondary">dashboard</span>
+<span class="material-symbols-outlined text-text-secondary">track_changes</span>
+<span class="material-symbols-outlined text-primary">analytics</span>
+<span class="material-symbols-outlined text-text-secondary">settings</span>
+</nav>
+</div>
+</body></html>

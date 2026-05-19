@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtomQuest Admin - System Audit Log</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Design System Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "warning": "#E5A832",
+                    "surface-variant": "#33353a",
+                    "success": "#3E8E41",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#bdc2ff",
+                    "tertiary": "#ffb867",
+                    "primary-fixed-dim": "#bdc2ff",
+                    "text-secondary": "#8A8F98",
+                    "inverse-primary": "#4854bb",
+                    "error-container": "#93000a",
+                    "on-secondary-fixed-variant": "#2c39a7",
+                    "tertiary-fixed": "#ffddbb",
+                    "on-secondary-container": "#a7afff",
+                    "outline-variant": "#454652",
+                    "surface-bright": "#37393f",
+                    "on-tertiary": "#482900",
+                    "on-surface-variant": "#c6c5d5",
+                    "on-primary-fixed": "#000965",
+                    "on-secondary": "#0d1d91",
+                    "surface-container-low": "#1a1b21",
+                    "border": "#272A30",
+                    "surface-container": "#1e1f25",
+                    "on-surface": "#e2e2e9",
+                    "outline": "#908f9e",
+                    "on-tertiary-fixed-variant": "#673d00",
+                    "on-primary-container": "#fdfaff",
+                    "on-primary": "#121f8b",
+                    "secondary": "#bdc2ff",
+                    "text-primary": "#F1F2F4",
+                    "surface": "#17191F",
+                    "inverse-surface": "#e2e2e9",
+                    "inverse-on-surface": "#2e3036",
+                    "on-error": "#690005",
+                    "surface-container-highest": "#33353a",
+                    "on-primary-fixed-variant": "#2e3aa2",
+                    "on-tertiary-container": "#fffaf8",
+                    "surface-dim": "#111318",
+                    "tertiary-fixed-dim": "#ffb867",
+                    "secondary-container": "#2c39a7",
+                    "tertiary-container": "#a56500",
+                    "error": "#ffb4ab",
+                    "on-tertiary-fixed": "#2b1700",
+                    "surface-container-high": "#282a2f",
+                    "primary-container": "#5e6ad2",
+                    "primary": "#bdc2ff",
+                    "secondary-fixed": "#dfe0ff",
+                    "primary-fixed": "#dfe0ff",
+                    "danger": "#D14343",
+                    "on-secondary-fixed": "#000964",
+                    "surface-container-lowest": "#0c0e13",
+                    "on-background": "#e2e2e9",
+                    "surface-tint": "#bdc2ff",
+                    "background": "#111318"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin": "32px",
+                    "unit": "4px",
+                    "container-max": "1280px"
+            },
+            "fontFamily": {
+                    "headline-xl": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-caps": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-xl": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}],
+                    "body-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #111318;
+            color: #e2e2e9;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .glass-panel {
+            background: rgba(23, 25, 31, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid #272A30;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #272A30;
+            border-radius: 10px;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (Shared Component) -->
+<aside class="hidden md:flex flex-col h-screen w-64 border-r border-border bg-surface-container-low sticky top-0 shrink-0">
+<div class="flex flex-col h-full py-6 px-4">
+<div class="flex items-center gap-3 px-2 mb-10">
+<div class="w-8 h-8 rounded bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-lg">rocket_launch</span>
+</div>
+<div class="flex flex-col">
+<span class="text-headline-md font-headline-md font-bold text-text-primary leading-none">AtomQuest</span>
+<span class="text-[10px] text-text-secondary uppercase tracking-widest mt-1">Admin Console</span>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="text-label-caps font-label-caps uppercase">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">target</span>
+<span class="text-label-caps font-label-caps uppercase">Goals</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">groups</span>
+<span class="text-label-caps font-label-caps uppercase">Teams</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg group" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="text-label-caps font-label-caps uppercase">Analytics</span>
+</a>
+<!-- Active State -->
+<a class="flex items-center gap-3 px-3 py-2 text-primary bg-secondary-container/20 border-r-2 border-primary transition-all duration-150 rounded-l-lg group scale-[0.98]" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">receipt_long</span>
+<span class="text-label-caps font-label-caps uppercase">Audit Log</span>
+</a>
+</nav>
+<div class="pt-6 mt-6 border-t border-border flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="text-label-caps font-label-caps uppercase">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-colors duration-150 rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="text-label-caps font-label-caps uppercase">Support</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Wrapper -->
+<main class="flex-1 flex flex-col min-w-0 bg-background">
+<!-- TopAppBar (Shared Component) -->
+<header class="flex justify-between items-center h-16 px-6 sticky top-0 z-50 w-full border-b border-border bg-surface/80 backdrop-blur-xl">
+<div class="flex items-center gap-6 flex-1">
+<h1 class="text-headline-md font-headline-md font-bold text-text-primary hidden lg:block">AtomQuest</h1>
+<div class="relative max-w-md w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-sm">search</span>
+<input class="w-full bg-surface-container-lowest border border-border rounded-lg py-1.5 pl-10 pr-4 text-body-sm focus:border-primary-container focus:ring-0 transition-all outline-none" placeholder="Global search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-text-secondary hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-text-secondary hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined">apps</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border cursor-pointer">
+<img alt="Admin User" class="w-full h-full object-cover" data-alt="A professional headshot of a senior system administrator in a high-tech corporate office. The background features blurred servers and ambient blue LED lighting, consistent with a high-end software development environment. The portrait is crisp, with soft lighting and a professional, neutral expression, reflecting a premium dark-themed UI style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6YCEw-kbVx92QPPb0kUeeYjwtbKF4hhsN9IbUl8oHdCoXWjQ09HRxE3LYCFr63SAfyImyNijOgA5MAlB5ws8VciyX-benuCLDbB2fMuyEMK1qNdjSPX-H3Y6Lrl5JQWDENYvZR00LnJ_eDH0q2Lk71MYbN-K-p09qHjmzn0F0W18olySqrytnW7GDz3O5c5eJz4UVrMlZQ86dcD-MW3xTV401U1oOqWh3Sx5x_2cPrVFFaymZZlvI7tODpaSZTJaMbOssTyyrALrP"/>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-6 lg:p-10 max-w-[1400px] mx-auto w-full">
+<!-- Header Section -->
+<div class="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+<h2 class="text-headline-lg font-headline-lg text-text-primary mb-2">System Audit Log</h2>
+<p class="text-body-md text-text-secondary">Track all platform actions and goal modifications across the enterprise.</p>
+</div>
+<!-- Controls Bar -->
+<div class="grid grid-cols-1 md:flex items-center gap-4 mb-8">
+<div class="relative flex-1 group">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full bg-[#0E1015] border border-border rounded-lg py-3 pl-12 pr-4 text-body-md text-text-primary focus:border-primary transition-all outline-none shadow-sm" placeholder="Search logs by user, action..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<select class="appearance-none bg-[#0E1015] border border-border rounded-lg py-3 pl-4 pr-10 text-body-md text-text-primary focus:border-primary outline-none cursor-pointer">
+<option>All Roles</option>
+<option>Admin</option>
+<option>Manager</option>
+<option>Employee</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 bg-[#0E1015] border border-border rounded-lg py-3 px-4 text-body-md text-text-primary hover:border-text-secondary transition-all">
+<span class="material-symbols-outlined text-[20px]">calendar_today</span>
+<span>Last 7 Days</span>
+<span class="material-symbols-outlined text-[20px] ml-2 text-text-secondary">expand_more</span>
+</button>
+</div>
+<button class="bg-surface-container-high border border-border p-3 rounded-lg text-text-secondary hover:text-text-primary transition-all">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Log Table Card -->
+<div class="glass-panel rounded-xl overflow-hidden border border-border shadow-2xl transition-all hover:border-surface-variant">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 border-b border-border">
+<th class="px-6 py-4 text-label-caps font-label-caps text-text-secondary uppercase tracking-wider">Timestamp</th>
+<th class="px-6 py-4 text-label-caps font-label-caps text-text-secondary uppercase tracking-wider">User</th>
+<th class="px-6 py-4 text-label-caps font-label-caps text-text-secondary uppercase tracking-wider">Role</th>
+<th class="px-6 py-4 text-label-caps font-label-caps text-text-secondary uppercase tracking-wider">Action</th>
+<th class="px-6 py-4 text-label-caps font-label-caps text-text-secondary uppercase tracking-wider">Details</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-body-md text-text-primary">2024-05-18</span>
+<span class="text-body-sm text-text-secondary">14:30:12</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-[10px] font-bold text-text-secondary border border-border">JD</div>
+<span class="text-body-md font-medium text-text-primary">John Doe</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#5E6AD2]/10 text-[#bdc2ff] border border-[#5E6AD2]/20">
+                                        Manager
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-success">
+<span class="material-symbols-outlined text-[18px]">verified</span>
+<span class="text-body-md font-medium">Goal Approved</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-body-sm text-text-secondary group-hover:text-text-primary transition-colors">Approved 'Q2 Sales' for Jane.</span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-body-md text-text-primary">2024-05-18</span>
+<span class="text-body-sm text-text-secondary">13:15:44</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container/20 flex items-center justify-center text-[10px] font-bold text-primary border border-primary/20">AU</div>
+<span class="text-body-md font-medium text-text-primary">Admin User</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#707DEC]/10 text-[#707DEC] border border-[#707DEC]/20">
+                                        Admin
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]">rocket</span>
+<span class="text-body-md font-medium">Shared Goal Pushed</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-body-sm text-text-secondary group-hover:text-text-primary transition-colors">Pushed 'Cost Reduction' to Eng.</span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/30 transition-colors group">
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-body-md text-text-primary">2024-05-18</span>
+<span class="text-body-sm text-text-secondary">10:00:05</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-text-secondary border border-border">JS</div>
+<span class="text-body-md font-medium text-text-primary">Jane Smith</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-surface-variant text-text-secondary border border-border">
+                                        Employee
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-warning">
+<span class="material-symbols-outlined text-[18px]">history_edu</span>
+<span class="text-body-md font-medium">Checked-in</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-body-sm text-text-secondary group-hover:text-text-primary transition-colors">Updated 'Q2 Sales' progress to 45%.</span>
+</td>
+</tr>
+<!-- Additional Decorative Data Rows -->
+<tr class="hover:bg-surface-container/30 transition-colors group opacity-80">
+<td class="px-6 py-5 whitespace-nowrap">
+<div class="flex flex-col">
+<span class="text-body-md text-text-primary">2024-05-17</span>
+<span class="text-body-sm text-text-secondary">18:45:21</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-text-secondary border border-border">ML</div>
+<span class="text-body-md font-medium text-text-primary">Mark Lukas</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#5E6AD2]/10 text-[#bdc2ff] border border-[#5E6AD2]/20">
+                                        Manager
+                                    </span>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-2 text-error">
+<span class="material-symbols-outlined text-[18px]">block</span>
+<span class="text-body-md font-medium">Goal Revoked</span>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="text-body-sm text-text-secondary group-hover:text-text-primary transition-colors">Revoked 'Internal Audit' for Team A.</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 bg-surface-container-low border-t border-border flex items-center justify-between">
+<span class="text-body-sm text-text-secondary">Showing 1 to 4 of 1,284 logs</span>
+<div class="flex items-center gap-2">
+<button class="px-4 py-1.5 rounded-lg border border-border text-text-secondary hover:text-text-primary hover:bg-surface-variant transition-all text-body-sm">Previous</button>
+<button class="px-4 py-1.5 rounded-lg bg-primary-container text-white text-body-sm font-medium">Next</button>
+</div>
+</div>
+</div>
+<!-- Bento-style Statistics at bottom -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+<div class="glass-panel p-6 rounded-xl border border-border">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-caps text-text-secondary">Total Events (24h)</span>
+<span class="material-symbols-outlined text-primary">monitoring</span>
+</div>
+<div class="text-headline-md font-bold text-text-primary">8,432</div>
+<div class="mt-2 text-body-sm text-success flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12.5% vs yesterday</span>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-xl border border-border">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-caps text-text-secondary">Security Alerts</span>
+<span class="material-symbols-outlined text-warning">security</span>
+</div>
+<div class="text-headline-md font-bold text-text-primary">0</div>
+<div class="mt-2 text-body-sm text-text-secondary">All systems operational</div>
+</div>
+<div class="glass-panel p-6 rounded-xl border border-border">
+<div class="flex items-center justify-between mb-4">
+<span class="text-label-caps text-text-secondary">Most Active User</span>
+<span class="material-symbols-outlined text-secondary">person_check</span>
+</div>
+<div class="text-headline-md font-bold text-text-primary">Admin User</div>
+<div class="mt-2 text-body-sm text-text-secondary">156 total actions</div>
+</div>
+</div>
+</div>
+<!-- System Status Indicator (Bottom Right) -->
+<div class="fixed bottom-6 right-6 flex items-center gap-2 px-3 py-1.5 rounded-full glass-panel border border-border shadow-lg">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-success opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-success"></span>
+</span>
+<span class="text-[11px] font-medium text-text-secondary uppercase tracking-tight">Live Updates On</span>
+</div>
+</main>
+<script>
+        // Simple search interaction
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const rows = document.querySelectorAll('tbody tr');
+            const term = e.target.value.toLowerCase();
+            
+            rows.forEach(row => {
+                const text = row.innerText.toLowerCase();
+                if (text.includes(term)) {
+                    row.style.display = 'table-row';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
+        // Entrance animation logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.querySelector('.p-6.lg\\:p-10');
+            canvas.classList.add('animate-in', 'fade-in', 'slide-in-from-bottom-2', 'duration-500');
+        });
+    </script>
+</body></html>

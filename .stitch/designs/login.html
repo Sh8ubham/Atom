@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AtomQuest - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0e13; /* surface-container-lowest */
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(23, 25, 31, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-container": "#a56500",
+                      "danger": "#D14343",
+                      "surface-tint": "#bdc2ff",
+                      "tertiary-fixed": "#ffddbb",
+                      "on-tertiary-fixed-variant": "#673d00",
+                      "surface": "#17191F",
+                      "primary-fixed-dim": "#bdc2ff",
+                      "on-tertiary-fixed": "#2b1700",
+                      "tertiary-fixed-dim": "#ffb867",
+                      "primary-container": "#5e6ad2",
+                      "on-primary-container": "#fdfaff",
+                      "surface-container-high": "#282a2f",
+                      "background": "#111318",
+                      "surface-container-lowest": "#0c0e13",
+                      "on-tertiary-container": "#fffaf8",
+                      "surface-variant": "#33353a",
+                      "primary-fixed": "#dfe0ff",
+                      "tertiary": "#ffb867",
+                      "error": "#ffb4ab",
+                      "on-background": "#e2e2e9",
+                      "border": "#272A30",
+                      "surface-bright": "#37393f",
+                      "primary": "#bdc2ff",
+                      "on-secondary-fixed": "#000964",
+                      "secondary-fixed": "#dfe0ff",
+                      "surface-container-highest": "#33353a",
+                      "secondary-fixed-dim": "#bdc2ff",
+                      "secondary-container": "#2c39a7",
+                      "text-secondary": "#8A8F98",
+                      "on-primary-fixed": "#000965",
+                      "on-surface-variant": "#c6c5d5",
+                      "secondary": "#bdc2ff",
+                      "inverse-surface": "#e2e2e9",
+                      "on-tertiary": "#482900",
+                      "on-secondary-fixed-variant": "#2c39a7",
+                      "outline": "#908f9e",
+                      "on-secondary": "#0d1d91",
+                      "inverse-primary": "#4854bb",
+                      "error-container": "#93000a",
+                      "text-primary": "#F1F2F4",
+                      "warning": "#E5A832",
+                      "surface-container-low": "#1a1b21",
+                      "outline-variant": "#454652",
+                      "on-primary": "#121f8b",
+                      "on-error": "#690005",
+                      "success": "#3E8E41",
+                      "surface-container": "#1e1f25",
+                      "surface-dim": "#111318",
+                      "on-primary-fixed-variant": "#2e3aa2",
+                      "on-secondary-container": "#a7afff",
+                      "inverse-on-surface": "#2e3036",
+                      "on-surface": "#e2e2e9",
+                      "on-error-container": "#ffdad6"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "unit": "4px",
+                      "container-max": "1280px"
+              },
+              "fontFamily": {
+                      "body-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "body-md": ["Inter"],
+                      "label-caps": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "body-sm": ["13px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "1.3", "letterSpacing": "-0.01em", "fontWeight": "500"}],
+                      "headline-xl": ["40px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-md": ["15px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-caps": ["11px", {"lineHeight": "1.0", "letterSpacing": "0.08em", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "1.2", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+</head>
+<body class="bg-surface-container-lowest text-on-surface min-h-screen flex items-center justify-center p-6">
+<!-- Background Decoration -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none">
+<div class="absolute -top-[25%] -left-[10%] w-[60%] h-[60%] rounded-full bg-primary-container/10 blur-[120px]"></div>
+<div class="absolute -bottom-[25%] -right-[10%] w-[60%] h-[60%] rounded-full bg-secondary-container/5 blur-[120px]"></div>
+</div>
+<main class="relative w-full max-w-[440px] z-10">
+<!-- Login Card -->
+<div class="glass-panel border border-border rounded-xl p-8 shadow-2xl">
+<!-- Header -->
+<header class="flex flex-col items-center mb-10">
+<div class="w-12 h-12 bg-primary-container flex items-center justify-center rounded-lg mb-4 shadow-lg shadow-primary-container/20">
+<span class="material-symbols-outlined text-on-primary-container" style="font-variation-settings: 'FILL' 1;">hub</span>
+</div>
+<h1 class="font-headline-md text-headline-md text-text-primary tracking-tight font-bold">AtomQuest</h1>
+<p class="font-body-sm text-body-sm text-text-secondary mt-1">Goal Setting &amp; Tracking Portal</p>
+</header>
+<!-- Form Area -->
+<form action="#" class="space-y-6" method="POST">
+<!-- Role Dropdown -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary" for="role">ORGANIZATIONAL ROLE</label>
+<div class="relative">
+<select class="w-full bg-surface-container-lowest border border-border rounded-lg px-4 py-3 text-body-md font-body-md text-text-primary focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container outline-none appearance-none transition-all cursor-pointer" id="role" name="role">
+<option value="employee">Employee</option>
+<option value="manager">Manager</option>
+<option value="admin">Admin</option>
+</select>
+<div class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-text-secondary">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Email Input -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-text-secondary" for="email">CORPORATE EMAIL</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-border rounded-lg pl-11 pr-4 py-3 text-body-md font-body-md text-text-primary focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container outline-none transition-all placeholder:text-text-secondary/50" id="email" name="email" placeholder="name@atomquest.com" type="email"/>
+<div class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/60">
+<span class="material-symbols-outlined text-[20px]">mail</span>
+</div>
+</div>
+</div>
+<!-- Password Input -->
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<label class="font-label-caps text-label-caps text-text-secondary" for="password">PASSWORD</label>
+</div>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-border rounded-lg pl-11 pr-4 py-3 text-body-md font-body-md text-text-primary focus:ring-2 focus:ring-primary-container/50 focus:border-primary-container outline-none transition-all placeholder:text-text-secondary/50" id="password" name="password" placeholder="••••••••" type="password"/>
+<div class="absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary/60">
+<span class="material-symbols-outlined text-[20px]">lock</span>
+</div>
+</div>
+</div>
+<!-- Action Button -->
+<button class="w-full bg-primary-container hover:bg-[#6c77e0] text-on-primary-container font-body-md text-body-md font-semibold py-3.5 rounded-lg shadow-lg shadow-primary-container/20 transition-all duration-150 active:scale-[0.98] mt-2" type="submit">
+                    Sign In
+                </button>
+</form>
+<!-- Footer -->
+<footer class="mt-8 pt-6 border-t border-border/50 text-center">
+<a class="font-body-sm text-body-sm text-text-secondary hover:text-primary transition-colors duration-150" href="#">
+                    Forgot password?
+                </a>
+<div class="mt-6 flex items-center justify-center gap-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all">
+<span class="font-label-caps text-label-caps text-text-secondary">SECURED BY</span>
+<div class="h-4 w-px bg-border"></div>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+</footer>
+</div>
+<!-- Optional Bottom Links -->
+<div class="mt-8 flex justify-center gap-6">
+<a class="font-label-caps text-label-caps text-text-secondary hover:text-text-primary transition-colors" href="#">PRIVACY POLICY</a>
+<a class="font-label-caps text-label-caps text-text-secondary hover:text-text-primary transition-colors" href="#">TERMS OF SERVICE</a>
+<a class="font-label-caps text-label-caps text-text-secondary hover:text-text-primary transition-colors" href="#">SUPPORT</a>
+</div>
+</main>
+<!-- Side Content (Decorative / Visual Anchor) -->
+<aside class="hidden xl:flex fixed right-[10%] top-1/2 -translate-y-1/2 flex-col gap-6 max-w-sm pointer-events-none">
+<div class="border border-border p-6 rounded-xl bg-surface/50 backdrop-blur-sm">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">insights</span>
+<span class="font-label-caps text-label-caps text-text-primary">QUARTERLY PROGRESS</span>
+</div>
+<div class="space-y-4">
+<div class="h-2 w-full bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[72%]"></div>
+</div>
+<p class="font-body-sm text-body-sm text-text-secondary leading-relaxed">
+                    AtomQuest helps teams align on performance and achieve enterprise-level global goals with precision.
+                </p>
+</div>
+</div>
+<div class="flex items-center gap-4 px-2">
+<div class="flex -space-x-3">
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background" data-alt="A professional headshot of a corporate manager with a confident expression, set against a blurred high-end office background. The lighting is soft and cinematic, utilizing cool tones and subtle purples that match the AtomQuest dark mode aesthetic. The style is sharp and high-definition, evocative of a modern SaaS executive profile." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8BHVbneiEUhPixjbHHAF6NG5iji7tvgsN5B7PE_ubxcs81b6w8AFku-SZci64MtAdx_sYJq0vTxlRoWRmKHZq5nZ7wt2qOmdf0x_qu0BSiSZE6Ic-ygCcXwZ6yGMCaLiNpViMTggO8bH-7-p0vvSTS5eSyzqY8blb321z8bRunGRAyq8okJy1qfoMJaaEzjh3jPlBX9Sd8GgH0uqKqQsKuIeB1SnCv1-8Yv0mghZfEXLl4GpLccsXyThht7uH6WkT1aiggyXk8Phc"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background" data-alt="A close-up portrait of a technical lead in a corporate environment, featuring clean lines and professional lighting. The color palette is dominated by deep blacks and slate grays, with a slight violet tint to align with the brand identity. The image feels modern, professional, and sophisticated, reflecting a high-performance culture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCybiw8RPbSiWwv-A-_QZ2WMnTppy8T176D0KCL20dFLNDK4cbeqiztlMrJkvo5zt5haPUmw96_5DDEYv0-etxQvYrIbuPy3ykMqfTzCPgsyy1iaQhOpxsHTEdtLm0ivd4P1aI1rjVqjsyqUVRmBVi24010OSCZc43fyz7OSrhSZDggwu1ShhvRqa1-sdlHt4FMhPhHvsQEKbl5N9esH2wdFGw3RJFrBwNG-XsRgg-Ih8yU3VLP6oJYThdf1B4nfjH6H4A9w9yjZI_A"/>
+<img alt="User" class="w-8 h-8 rounded-full border-2 border-background" data-alt="A professional female executive smiling warmly in a sleek, minimalist corporate setting. The background features architectural glass and soft ambient light. The image maintains a precise, focused, and sophisticated mood, with a color profile that complements the dark mode interface of AtomQuest, using subtle cool highlights." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrqThG-wQv8dGFEVVyycJ_NZKgY-dcvcuqK_84X7xIUvC7DoI76R7x3g4247Ao0F_cTLWtz2dsfo22eEwreA53YG3-8lZCn60yLCPBi7mGJTcS6vXF-uxP7N3fZxdKMbSRbBPhKmIA3r5zpn_DjY4aewmPZrljT_jny_BPEOAi9oApv3aXQ1KhO8RhZl72q1EvgT2bgYH_KOysrIJTn9XecwAm8Cpfv7Xxc3PjXJSCfkKzczx6iNYXKtkmT7zFPxckQS9GulVXLQxc"/>
+</div>
+<span class="font-label-caps text-label-caps text-text-secondary">JOIN 500+ TEAMS</span>
+</div>
+</aside>
+</body></html>
